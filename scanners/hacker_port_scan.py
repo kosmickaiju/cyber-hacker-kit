@@ -32,10 +32,12 @@ def scan_target(target):
 
 if __name__ == "__main__": 
     while True:
-        target_ip = input("Enter target IP (IPv4 format): ") 
+        target_ip = input("Enter target IP (IPv4 format) or CIDR range (e.g 192.168.1.0/24): ") 
         pattern = r"^\d{1,3}(\.\d{1,3}){3}$"
         if re.fullmatch(pattern, target_ip):
             scan_target(target_ip)
+        elif "/" in target_ip:
+            network_scan.scan(target_ip)
         else:
             print(f'Not a valid IPv4 address. Try again!')
     
