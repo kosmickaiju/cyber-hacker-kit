@@ -12,10 +12,11 @@ def main():
     # opens hygiene toolkit and allows user to choose tool
     if args.hygiene:
         from scanners import password_checker, hygiene_port_scan
+        import hygiene_summary
         tools = {
             'password checker': password_checker.password_check,
             'port scan': hygiene_port_scan.run_scan,
-            'summary': lambda: print("Summary placeholder!")
+            'summary': hygiene_summary.run_summary
         }
 
         while True:
