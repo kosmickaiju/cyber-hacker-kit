@@ -8,18 +8,32 @@ def main():
 
     args = parser.parse_args()
 
-    if args.hygiene():
+    if args.hygiene:
         from scanners import password_checker, hygiene_port_scan
+        tools = ['password checker', 'port scan', 'summary']
         tool = input('Select a tool to run. Choose from password checker, port scan, or summary: ')
         tool = tool.lower()
-        if tool == 'password checker':
+        if tool == tools[0]:
             print('meow! this should be the password checker :3')
-        elif tool == 'port scan':
+            print('Loading ', tools[0], '...')
+        elif tool == tools[1]:
             print('meow! this should be the port scanner :3')
-        elif tool == 'summary':
+        elif tool == tools[len(tools) - 1]:
             print('meow! this should be the summary :3')
         else:
-            print("Oops! That's not a vaid tool - try again!")
+            print("Oops! That's not a valid tool - try again!")
+    
+    if args.hacker:
+        from scanners import password_checker, hygiene_port_scan
+        tools = ['port/network scan', 'password cracker', 'packer sniffer', 'vulnerability scanner', 'hash cracker', 'summary']
+        tool = input('Select a tool to run. Choose from password checker, port scan, or summary: ')
+        tool = tool.lower()
+        for i in tools:
+            if tool == tools[i]:
+                print('meow! this is in the list :3')
+            else:
+                print("Oops! That's not a valid tool - try again!")
 
 
-
+if __name__ == '__main__':
+    main()
