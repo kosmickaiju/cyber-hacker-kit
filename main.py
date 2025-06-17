@@ -13,19 +13,17 @@ def main():
     if args.hygiene:
         from scanners import password_checker, hygiene_port_scan
         tools = {
-            'password checker': lambda: print("Password checker placeholder!"),
-            'port scan': lambda: print("Port scan placeholder!"),
+            'password checker': password_checker.password_check,
+            'port scan': hygiene_port_scan.run_scan,
             'summary': lambda: print("Summary placeholder!")
         }
 
         while True:
             tool = input('Select a tool to run (password checker, port scan, summary): ').strip().lower()
             if tool in tools:
-                print(f"meow! running {tool} :3")
-                print("Loading...")
+                print(f"Loading {tool} ...")
                 time.sleep(3)
-                print('meow!')
-                #tools[tool]()
+                tools[tool]()
                 break
             else:
                 print("Oops! That's not a valid tool - try again!")
