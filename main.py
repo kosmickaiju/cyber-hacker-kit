@@ -9,6 +9,7 @@ def main():
 
     args = parser.parse_args()
 
+    # opens hygiene toolkit and allows user to choose tool
     if args.hygiene:
         from scanners import password_checker, hygiene_port_scan
         tools = {
@@ -24,11 +25,12 @@ def main():
                 print("Loading...")
                 time.sleep(3)
                 print('meow!')
-                #tools[tool]()  # Call the function
+                #tools[tool]()
                 break
             else:
                 print("Oops! That's not a valid tool - try again!")
     
+    # opens hacker toolkit and allows user to choose tool
     if args.hacker:
         from scanners import network_scan, hacker_port_scan, password_cracker, packet_sniffer, vuln_scanner, hash_cracker 
         tools = {
@@ -46,7 +48,7 @@ def main():
                 print(f"meow! running {tool} :3")
                 print("Loading...")
                 time.sleep(1)
-                tools[tool]()  # Call the function
+                #tools[tool]()
                 break
             else:
                 print("Oops! That's not a valid tool - try again!")
