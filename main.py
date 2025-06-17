@@ -11,31 +11,43 @@ def main():
 
     if args.hygiene:
         from scanners import password_checker, hygiene_port_scan
-        tools = ['password checker', 'port scan', 'summary']
-        tool = input('Select a tool to run. Choose from password checker, port scan, or summary: ')
-        tool = tool.lower()
-        if tool == tools[0]:
-            print('meow! this should be the password checker :3')
-            print('Loading', tools[0], '...')
-            time.sleep(3)
-            print(':p')
-        elif tool == tools[1]:
-            print('meow! this should be the port scanner :3')
-            print('Loading', tools[1], '...')
-        elif tool == tools[len(tools) - 1]:
-            print('meow! this should be the summary :3')
-            print('Loading', tools[len(tools) - 1], '...')
-        else:
-            print("Oops! That's not a valid tool - try again!")
+        tools = {
+            'password checker': lambda: print("Password checker placeholder!"),
+            'port scan': lambda: print("Port scan placeholder!"),
+            'summary': lambda: print("Summary placeholder!")
+        }
+
+        while True:
+            tool = input('Select a tool to run (password checker, port scan, summary): ').strip().lower()
+            if tool in tools:
+                print(f"meow! running {tool} :3")
+                print("Loading...")
+                time.sleep(3)
+                print('meow!')
+                #tools[tool]()  # Call the function
+                break
+            else:
+                print("Oops! That's not a valid tool - try again!")
     
     if args.hacker:
-        from scanners import password_checker, hygiene_port_scan
-        tools = ['port/network scan', 'password cracker', 'packer sniffer', 'vulnerability scanner', 'hash cracker', 'summary']
-        tool = input('Select a tool to run. Choose from password checker, port scan, or summary: ')
-        tool = tool.lower()
-        for i in tools:
-            if tool == tools[i]:
-                print('meow! this is in the list :3')
+        from scanners import network_scan, hacker_port_scan, password_cracker, packet_sniffer, vuln_scanner, hash_cracker 
+        tools = {
+            'port/network scan': lambda: (network_scan.scan('192.168.1.0/24'), hacker_port_scan.scan_target('192.168.1.1')),
+            'password cracker': password_cracker.run,
+            'packet sniffer': packet_sniffer.sniff_packets,
+            'vulnerability scanner': vuln_scanner.scan_vulns,
+            'hash cracker': hash_cracker.crack,
+            'summary': lambda: print("Summary placeholder!")
+        }
+
+        while True:
+            tool = input('Select a tool to run (port/network scan, password cracker, packet sniffer, vulnerability scanner, hash cracker, summary): ').strip().lower()
+            if tool in tools:
+                print(f"meow! running {tool} :3")
+                print("Loading...")
+                time.sleep(1)
+                tools[tool]()  # Call the function
+                break
             else:
                 print("Oops! That's not a valid tool - try again!")
 
