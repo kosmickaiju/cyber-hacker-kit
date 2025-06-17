@@ -1,5 +1,6 @@
 import argparse
 import re
+import time 
 
 def main():
     parser = argparse.ArgumentParser(description='Cyber Hygiene and Ethical Hacker Training Toolkits')
@@ -15,11 +16,15 @@ def main():
         tool = tool.lower()
         if tool == tools[0]:
             print('meow! this should be the password checker :3')
-            print('Loading ', tools[0], '...')
+            print('Loading', tools[0], '...')
+            time.sleep(3)
+            print(':p')
         elif tool == tools[1]:
             print('meow! this should be the port scanner :3')
+            print('Loading', tools[1], '...')
         elif tool == tools[len(tools) - 1]:
             print('meow! this should be the summary :3')
+            print('Loading', tools[len(tools) - 1], '...')
         else:
             print("Oops! That's not a valid tool - try again!")
     
