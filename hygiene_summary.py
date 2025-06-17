@@ -1,4 +1,5 @@
 import time
+
 def run_summary():
     from scanners import password_checker, hygiene_port_scan
     

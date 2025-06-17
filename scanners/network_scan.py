@@ -1,4 +1,5 @@
 import requests
+import hacker_port_scan
 from scapy.all import *
 
 def scan(target_ip): 
@@ -13,5 +14,8 @@ def scan(target_ip):
         print(f"{element[1].psrc}\t\t{element[1].hwsrc}") 
 
 if __name__ == "__main__": 
-    target = input("Enter target IP or IP range (e.g., 192.168.1.0/24): ") 
-    scan(target)
+    target = input("Enter target IP or IP range (e.g., 192.168.1.1 or 192.168.1.0/24): ") 
+    if '/' in target:
+        scan(target)
+    else:
+        hacker_port_scan.scan_target(target)
