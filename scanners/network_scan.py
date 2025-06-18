@@ -1,5 +1,5 @@
 import requests
-import hacker_port_scan
+from . import hacker_port_scan
 from scapy.all import *
 
 def scan(target_ip): 

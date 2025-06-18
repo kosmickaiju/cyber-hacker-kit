@@ -1,5 +1,5 @@
 import socket 
-import network_scan
+from . import network_scan
 import re
 
 def scan_port(target, port): 
