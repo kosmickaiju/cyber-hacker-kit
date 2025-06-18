@@ -1,5 +1,6 @@
 import hashlib
 
+hash_type = input("Type of hash (md5/sha1/sha256): ")
 target_hash = input("Enter the hash: ")
 wordlist_path = input("Enter path to wordlist: ")
 
