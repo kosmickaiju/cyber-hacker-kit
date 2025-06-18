@@ -1,6 +1,8 @@
 # Cyber Hygiene and Ethical Hacker Training Kit
 
 ## What is it?
+This is a command-line interface (CLI)-based cyber hygiene and ethical hacking toolkit, serving as both a way to check your cybersecurity hygiene and to practice some basic ethical hacking skills. The cybersecurity hygiene kit contains a password checker that notifies you if a inputted password has been found in previous breaches, as well as a port scanner that checks for any open ports on the localhost. Users can also run a hygiene summary, providing the results of both tests and customized cybersecurity tips based on the results of the scan. The ethical hacker toolkit is much more complex, containing another port scanner used in tandem with a network scanner (allowing the user to view all open ports on a host as well as any other devices on a network), a basic brute force password cracker that utilizes SSH and a password list in order to attempt to brute force a login on an inputted target, a hash cracker that utilizes a basic wordlist to decrypt several hashes (such as MD5, SHA1, and SHA256) based on user input, a simple packet sniffer that captures network traffic that can be used to analyze potential suspicious activity, and a basic vulnerability scanner that checks for known vulnerabilities on a target (such as default credentials, open outdated services, etc.) using a vulnerability database/dictionary.
 ## How It Works/How to Use
+
 ## Tech Stack
 This toolkit is written entirely in **Python**, utilizing several Python libraries such as **scapy**, **paramiko**, **socket**, **tqdm**, and **hashlib**. Additionally, the password checker from the hygiene toolkit checks passwords using the **Have I Been Pwned API**. 
