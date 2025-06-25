@@ -11,7 +11,7 @@ def run_selected_tool():
             from scanners import password_checker
             result = password_checker.run()
             output_console.insert(tk.END, result + '\n')
-    # Add other tool mappings here...
+    # add other tool mappings here
 
 root = tk.Tk()
 root.title("Cybersecurity Toolkit")
