@@ -8,6 +8,7 @@ def run_selected_tool():
     output_console.insert(tk.END, f"> Running {tool} from {toolkit} toolkit...\n")
 
     if toolkit == "Cyber Hygiene" and tool == "Password Checker":
+        # Ask for the password
         password = simpledialog.askstring("Password Input", "Enter password to check:", parent=root)
         if password:
             result = password_checker.run(password)
@@ -15,28 +16,34 @@ def run_selected_tool():
         else:
             output_console.insert(tk.END, "⚠️ No password entered.\n\n")
 
+# ----- MAIN GUI SETUP -----
+
 root = tk.Tk()
 root.title("Cybersecurity Toolkit")
 root.geometry("600x400")
 
-# Variables
-toolkit_var = tk.StringVar(value="Cyber Hygiene")
-tool_var = tk.StringVar(value="Password Checker")
+# Dropdown Variables
+toolkit_var = tk.StringVar()
+tool_var = tk.StringVar()
 
-# Dropdowns
-ttk.Label(root, text="Select Toolkit").pack()
+# Toolkit Selector
+ttk.Label(root, text="Select Toolkit").pack(pady=(10, 0))
 toolkit_menu = ttk.Combobox(root, textvariable=toolkit_var, values=["Cyber Hygiene"], state="readonly")
+toolkit_menu.current(0)
 toolkit_menu.pack()
 
-ttk.Label(root, text="Select Tool").pack()
+# Tool Selector
+ttk.Label(root, text="Select Tool").pack(pady=(10, 0))
 tool_menu = ttk.Combobox(root, textvariable=tool_var, values=["Password Checker"], state="readonly")
+tool_menu.current(0)
 tool_menu.pack()
 
-# Buttons
-ttk.Button(root, text="Run Tool", command=run_selected_tool).pack(pady=5)
+# Run Button
+ttk.Button(root, text="Run Tool", command=run_selected_tool).pack(pady=10)
 
-# Output Console
+# Output Text Area
 output_console = scrolledtext.ScrolledText(root, wrap=tk.WORD, width=70, height=15)
 output_console.pack(padx=10, pady=10)
 
+# Start GUI Loop
 root.mainloop()

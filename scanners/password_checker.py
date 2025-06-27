@@ -30,8 +30,8 @@ def run(password):
     try:
         count = check_pwned_password(password)
         if count:
-            return f"⚠️ This password has been found {count} times in data breaches.\nVisit https://www.cisa.gov/secure-our-world/use-strong-passwords for guidance."
+            return f"Oops! This password has been found {count} times in data breaches.\nVisit https://www.cisa.gov/secure-our-world/use-strong-passwords for guidance."
         else:
-            return "✅ Good news! This password was not found in any known breaches... yet."
+            return "Good news! This password was not found in any known breaches... yet."
     except Exception as e:
         return f"❌ Error: {e}"
