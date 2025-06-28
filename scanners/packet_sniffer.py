@@ -1,8 +1,13 @@
-from scapy.all import * 
+from scapy.all import sniff, IP
 
-def packet_sniffer(packet): 
-    if packet.haslayer(IP): 
-        print(f"Source: {packet[IP].src} -> Destination: {packet[IP].dst}") 
+def run():
+    output = "Sniffing network packets...\n\n"
+    def packet_handler(packet):
+        nonlocal output
+        if packet.haslayer(IP):
+            output += f"Source: {packet[IP].src} -> Destination: {packet[IP].dst}\n"
+    sniff(filter="ip", prn=packet_handler, count=10, timeout=5)
+    if output.strip() == "Sniffing network packets...":
+        output += "No packets captured.\n"
 
-if __name__ == "__main__": 
-    sniff(prn=packet_sniffer, count=10)
+    return output

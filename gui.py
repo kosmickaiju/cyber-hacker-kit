@@ -1,6 +1,6 @@
 import tkinter as tk
 from tkinter import ttk, scrolledtext, simpledialog
-from scanners import password_checker, hygiene_port_scan, hacker_port_scan
+from scanners import password_checker, hygiene_port_scan, hacker_port_scan, network_scan, packet_sniffer
 
 TOOLKIT_TOOLS = {
     "Cyber Hygiene": {
@@ -9,31 +9,34 @@ TOOLKIT_TOOLS = {
     },
     "Ethical Hacker": {
         "Hacker Port Scan": hacker_port_scan.run,
+        "Network Scan": network_scan.run,
+        "Packet Sniffer": packet_sniffer.run,
     }
 }
 
 root = tk.Tk()
 root.title("Purple Team Toolkit")
 root.geometry("700x450")
+root.state("zoomed")
 
 toolkit_var = tk.StringVar()
 tool_var = tk.StringVar()
 
-# ---------- TOOLKIT DROPDOWN ----------
+# toolkit dropdown
 ttk.Label(root, text="Select Toolkit").pack(pady=(10, 0))
 toolkit_menu = ttk.Combobox(root, textvariable=toolkit_var, values=list(TOOLKIT_TOOLS.keys()), state="readonly")
 toolkit_menu.pack()
 
-# ---------- TOOL DROPDOWN ----------
+# tool dropdown
 ttk.Label(root, text="Select Tool").pack(pady=(10, 0))
 tool_menu = ttk.Combobox(root, textvariable=tool_var, state="readonly")
 tool_menu.pack()
 
-# ---------- OUTPUT CONSOLE ----------
+# output console
 output_console = scrolledtext.ScrolledText(root, wrap=tk.WORD, width=80, height=15)
 output_console.pack(padx=10, pady=10)
 
-# ---------- TOOL LAUNCHER ----------
+# tool launcher
 def run_selected_tool():
     toolkit = toolkit_var.get()
     tool = tool_var.get()
@@ -44,14 +47,14 @@ def run_selected_tool():
     if not func:
         output_console.insert(tk.END, "❌ Tool not implemented yet.\n\n")
         return
-
-    # ---------- INPUT HANDLING ----------
     if tool == "Password Checker":
         user_input = simpledialog.askstring("Input", "Enter password to check:", parent=root)
-    elif tool == "Hacker Port Scan":
+    elif tool in ["Hacker Port Scan", "Network Scan"]:
         user_input = simpledialog.askstring("Input", "Enter IP address or CIDR range:", parent=root)
-    elif tool == "Port Scan" and toolkit == "Cyber Hygiene":
-        user_input = "default"  # No input needed for hygiene localhost scan
+    elif tool == "Hygiene Port Scan":
+        user_input = "default" 
+    elif tool == "Packet Sniffer":
+        user_input = "default"
     else:
         user_input = None
 

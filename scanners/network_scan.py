@@ -1,21 +1,21 @@
-import requests
+from scapy.all import ARP, Ether, srp
 from . import hacker_port_scan
-from scapy.all import *
 
-def scan(target_ip): 
+def run(target_ip):
+    if '/' not in target_ip:
+        return hacker_port_scan.run(target_ip)
+
     arp_request = ARP(pdst=target_ip) 
     broadcast = Ether(dst="ff:ff:ff:ff:ff:ff") 
-    arp_request_broadcast = broadcast/arp_request 
+    arp_request_broadcast = broadcast / arp_request 
     answered_list = srp(arp_request_broadcast, timeout=1, verbose=False)[0] 
 
-    print("Available Devices:") 
-    print("IP\t\t\tMAC Address\n----------------------------------") 
-    for element in answered_list: 
-        print(f"{element[1].psrc}\t\t{element[1].hwsrc}") 
+    output = "Available Devices:\n"
+    output += "IP\t\t\tMAC Address\n----------------------------------\n"
+    for element in answered_list:
+        output += f"{element[1].psrc}\t\t{element[1].hwsrc}\n"
 
-if __name__ == "__main__": 
-    target = input("Enter target IP or IP range (e.g., 192.168.1.1 or 192.168.1.0/24): ") 
-    if '/' in target:
-        scan(target)
-    else:
-        hacker_port_scan.scan_target(target)
+    if not answered_list:
+        output += "No devices found.\n"
+
+    return output
