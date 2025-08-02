@@ -1,6 +1,6 @@
 import tkinter as tk
 from tkinter import ttk, scrolledtext, simpledialog
-from scanners import password_checker, hygiene_port_scan, hacker_port_scan, network_scan, packet_sniffer
+from scanners import password_checker, hygiene_port_scan, hacker_port_scan, network_scan, packet_sniffer, vuln_scanner
 
 TOOLKIT_TOOLS = {
     "Cyber Hygiene": {
@@ -11,6 +11,7 @@ TOOLKIT_TOOLS = {
         "Hacker Port Scan": hacker_port_scan.run,
         "Network Scan": network_scan.run,
         "Packet Sniffer": packet_sniffer.run,
+        "Vulnerability Scanner": vuln_scanner.run
     }
 }
 
