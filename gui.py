@@ -45,7 +45,7 @@ def run_selected_tool():
     output_console.insert(tk.END, f"> Running {tool} from {toolkit} toolkit...\n")
 
     if not func:
-        output_console.insert(tk.END, "❌ Tool not implemented yet.\n\n")
+        output_console.insert(tk.END, "Tool not implemented yet or does not exist.\n\n")
         return
     if tool == "Password Checker":
         user_input = simpledialog.askstring("Input", "Enter password to check:", parent=root)
@@ -65,13 +65,13 @@ def run_selected_tool():
         elif user_input:
             result = func(user_input)
         else:
-            output_console.insert(tk.END, "⚠️ No input provided.\n\n")
+            output_console.insert(tk.END, "Oops! No input provided.\n\n")
             return
 
         output_console.insert(tk.END, result + '\n\n')
 
     except Exception as e:
-        output_console.insert(tk.END, f"❌ Error: {e}\n\n")
+        output_console.insert(tk.END, f"Error: {e}\n\n")
 
 # ---------- TOOL DROPDOWN UPDATER ----------
 def update_tool_options(event=None):
